@@ -4,8 +4,10 @@
 #
 
 NAME="consul"
+{% if consul_network_bind == 'auto' %}
 LOCAL_IP="$(curl http://169.254.169.254/latest/meta-data/local-ipv4)"
 LOCAL_HOSTNAME="$(curl -s http://169.254.169.254/latest/meta-data/local-hostname | cut -d "." -f 1)"
+{% endif %}
 CONSUL_CONFIG_DIR="{{ consul_config_dir }}"
 CONSUL_DATA_DIR="{{ consul_data_dir }}"
 CONSUL_LOG_FILE="{{ consul_agent_log_file }}"
